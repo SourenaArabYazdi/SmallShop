@@ -8,6 +8,11 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
+import { Input } from "@/components/ui/input";
+import Counter from './counters';
+import Link from "next/link";
+import { FaRegCopyright } from "react-icons/fa6";
+
 
 export default function BodyPage() {
     const [visibleSections, setVisibleSections] = useState({
@@ -200,11 +205,11 @@ export default function BodyPage() {
             </div>
             
 
-            <div className="w-full h-screen flex flex-col justify-center items-center gap-10 bg-gray-100">
+            <div className="w-full h-screen flex flex-col justify-center items-center  gap-10 bg-gray-100">
                
                     <div 
                         ref={creditCardRef} 
-                        className={`w-[90%] flex flex-col justify-center h-fit items-center mt-6 transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
+                        className={`w-[90%] flex flex-col justify-center h-fit items-center mt-[6rem] transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
                     >
                       
                        <span>  <CiCreditCard1 size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3"/>  </span>
@@ -222,7 +227,7 @@ export default function BodyPage() {
 
                     <div 
                         ref={saveMoneyRef} 
-                        className={`w-[90%] flex flex-col justify-center h-fit items-center mt-6 transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
+                        className={`w-[90%] flex flex-col justify-center h-fit items-center mt-1 transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
                     >
                       
                        <span>  <FaMoneyCheckDollar size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3"/>  </span>
@@ -241,7 +246,7 @@ export default function BodyPage() {
 
                     <div 
                         ref={freeDeliveryRef} 
-                        className={`w-[90%] flex flex-col justify-center h-fit items-center mt-6 transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
+                        className={`w-[90%] flex flex-col justify-center mb-[6rem] h-auto items-center mt-6  transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
                     >
                       
                        <span>  <FaTelegramPlane size={20} className="bg-amber-200 rounded-full w-[90px] h-[90px]  p-2 text-white mt-3"/>  </span>
@@ -380,7 +385,7 @@ export default function BodyPage() {
              
             <div 
                 ref={testimonialsRef}
-                className={`w-full min-h-[80vh] bg-gray-100 flex flex-col items-center transition-opacity duration-1000 ${visibleSections.testimonials ? 'opacity-100' : 'opacity-0'}`}
+                className={`w-full min-h-auto bg-gray-100 flex flex-col mt-[3rem]  items-center transition-opacity duration-1000 ${visibleSections.testimonials ? 'opacity-100' : 'opacity-0'}`}
             >
                 <div className="h-[200px] w-[90%] flex flex-col items-center pt-14">
                     <span className="font-light text-gray-400">TESTIMONY</span>
@@ -427,7 +432,7 @@ export default function BodyPage() {
                     </div>
                 </div>
 
-                <div className="flex justify-center mt-10 gap-2">
+                <div className="flex justify-center mt-10 gap-2 mb-7 ">
                     {testimonials.map((_, index) => (
                         <button
                             key={index}
@@ -438,6 +443,60 @@ export default function BodyPage() {
                     ))}
                 </div>
             </div>
+
+           <Counter />
+
+
+           <div className="w-[100%] h-[300px] bg-amber-200 flex flex-col items-center gap-7">
+              <h1 className="text-white text-2xl mt-4">NEWSLETTER</h1>
+              <p className="font-light text-gray-500">just stay tune for our produt . now you can subscribe</p>
+
+              <Input placeholder="Email..." className="w-[80%] inline-block mt-3"/>
+              <Button className="border border-white w-[80%] mb-3 inline-block  bg-slate-800 text-white h-[50px] transition-all hover:bg-slate-600 cursor-pointer" >
+                 Subscribe
+              </Button>
+
+           </div>
+
+
+           <div className="mt-2 ml-2 ">
+              
+              <h2 className="font-bold mt-3 ">SHOP</h2>
+              <p className="mt-2 font-light text-gray-500 mb-3">Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+
+
+             <div className="grid grid-cols-2 grid-rows-9 text-sm ">
+
+                       <Link href={'#'}>About</Link>
+                       <Link href={'#'}>Help</Link>
+                       <Link href={'#'}>Contact</Link>
+                       <Link href={'#'}>Terms</Link>
+                       <Link href={'#'}>Meetups</Link>
+         
+                       <Link href={'#'}>Shop</Link>
+                       <Link href={'#'}>Privacy</Link>
+                       <Link href={'#'}>Testimonials</Link>
+                       <Link href={'#'}>Handbook</Link>
+                       <Link href={'#'}>Held Desk</Link>
+         
+                       <Link href={'#'}>Find Designers</Link>
+                       <Link href={'#'}>Find Developers</Link>
+                       <Link href={'#'}>Teams</Link>
+                       <Link href={'#'}>Advertise</Link>
+                       <Link href={'#'}>API</Link>
+             </div>
+
+           </div>
+
+
+
+           <div className="flex flex-col items-center mb-3 mt-8 h-fit font-lig">
+               <div className="flex flex-row items-center gap-2">
+               <FaRegCopyright /> <span>2025 Soren AllRight Reserved</span>
+               </div>
+               <span>Designed by <Link href={'#'} className="text-amber-200">FreeHtlm5</Link></span>
+
+           </div>
         </div>
     )
 }
