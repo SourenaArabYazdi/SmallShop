@@ -78,7 +78,7 @@ export default function ShopPage(){
                         {products.map((product, index) => (
                             <div 
                                 key={product.id} 
-                                className={`group relative items-center justify-center flex flex-col transition-all duration-700 mr-10 ${
+                                className={`group relative items-center justify-center flex flex-col transition-all duration-700  ${
                                     visibleItems.includes(product.id) 
                                     ? 'opacity-100 translate-y-0' 
                                     : 'opacity-0 translate-y-10'
@@ -125,11 +125,11 @@ export default function ShopPage(){
             </div>
 
             <div className="w-[100%] h-[300px] bg-amber-200 flex flex-col items-center gap-7   ">
-              <h1 className="text-white text-2xl mt-4 mr-10 ">NEWSLETTER</h1>
-              <p className="font-light text-gray-500 mr-10">just stay tune for our produt . now you can subscribe</p>
+              <h1 className="text-white text-2xl mt-4  ">NEWSLETTER</h1>
+              <p className="font-light text-gray-500 ">just stay tune for our produt . now you can subscribe</p>
 
-              <Input placeholder="Email..." className="w-[80%] inline-block mt-3 mr-10"/>
-              <Button className="border border-white w-[80%] mb-3 inline-block  bg-slate-800 text-white h-[50px] transition-all hover:bg-slate-600 cursor-pointer mr-10" >
+              <Input placeholder="Email..." className="w-[80%] inline-block mt-3"/>
+              <Button className="border border-white w-[80%] mb-3 inline-block  bg-slate-800 text-white h-[50px] transition-all hover:bg-slate-600 cursor-pointer " >
                  Subscribe
               </Button>
 
