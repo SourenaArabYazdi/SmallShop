@@ -187,8 +187,8 @@ export default function BodyPage() {
                          priority
                      />
                      
-                     <div className="absolute inset-0 bg-black/10 flex flex-col justify-center">
-                         <div className="bg-white/80 p-8 mx-4 md:mx-20 max-w-md">
+                     <div className="absolute inset-0 bg-black/10 flex flex-col justify-center  ">
+                         <div className="bg-white/80 p-8 mx-4 md:mx-20 max-w-md md:w-[690px] md:h-[324px]">
                              <p className="text-gray-500 mb-2">$530</p>
                              <h1 className="text-4xl  uppercase mb-4">THE HALUZ ROCKING CHAIR</h1>
                              <p className="text-gray-500 font-light mb-6 ">
@@ -205,17 +205,17 @@ export default function BodyPage() {
             </div>
             
 
-            <div className="w-full h-screen flex flex-col justify-center items-center  gap-10 bg-gray-100">
+            <div className="w-full h-screen flex flex-col 2xl:min-w-[2144px] 2xl:max-h-[646px] lg:max-h-[646px] justify-center items-center xl:flex xl:justify-center xl:flex-row xl:items-center  gap-10 bg-gray-100 md:grid md:grid-cols-3 md:grid-rows-1 lg:flex lg:flex-row lg:justify-center lg:items-center  2xl:flex 2xl:items-center 2xl:justify-center 2xl:flex-row md:justify-center md:items-center ">
                
                     <div 
                         ref={creditCardRef} 
-                        className={`w-[90%] flex flex-col justify-center h-fit items-center mt-[6rem] transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
+                        className={`w-[90%] md:max-w-[249px] md:m-0 md:w-full md:h-[476px]    flex flex-col justify-center h-fit items-center mt-[6rem] transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
                     >
                       
                        <span>  <CiCreditCard1 size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3"/>  </span>
                        <span className="mt-5">CREDIT CARD</span>
                         
-                        <p className="font-light w-[400px] mt-5">
+                        <p className="font-light w-[400px] mt-5 md:w-[179px] md:h-[163px]">
                         Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
                         </p>
 
@@ -227,13 +227,13 @@ export default function BodyPage() {
 
                     <div 
                         ref={saveMoneyRef} 
-                        className={`w-[90%] flex flex-col justify-center h-fit items-center mt-1 transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
+                        className={`w-[90%] md:max-w-[249px] md:m-0 md:h-[476px] md:w-full   flex flex-col justify-center h-fit items-center mt-1 transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
                     >
                       
                        <span>  <FaMoneyCheckDollar size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3"/>  </span>
                        <span className="mt-5">SAVE MONEY</span>
                         
-                        <p className="font-light w-[400px] mt-5">
+                        <p className="font-light w-[400px] mt-5 md:w-[179px] md:h-[163px]">
                         Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
                         </p>
 
@@ -246,13 +246,13 @@ export default function BodyPage() {
 
                     <div 
                         ref={freeDeliveryRef} 
-                        className={`w-[90%] flex flex-col justify-center mb-[6rem] h-auto items-center mt-6  transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
+                        className={`w-[90%] md:max-w-[249px] md:m-0 md:h-[476px]  md:w-full  flex flex-col justify-center mb-[6rem] h-auto items-center mt-6  transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
                     >
                       
                        <span>  <FaTelegramPlane size={20} className="bg-amber-200 rounded-full w-[90px] h-[90px]  p-2 text-white mt-3"/>  </span>
                        <span className="mt-5">FREE DELIVERY</span>
                         
-                        <p className="font-light w-[400px] mt-5">
+                        <p className="font-light w-[400px] mt-5 md:w-[179px] md:h-[163px]">
                         Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
                         </p>
 
@@ -263,7 +263,7 @@ export default function BodyPage() {
                     </div>
             </div>
 
-            <div className="w-full min-h-screen flex flex-col items-center mt-10">
+            <div className="w-full min-h-screen flex flex-col items-center mt-10 ">
                 <div className="h-[200px] w-[90%] flex flex-col items-center">
                     <span className="text-md text-gray-400 font-semibold">COOL STUFF</span>
                     <span className="mt-2 text-3xl">PRODUCTS</span>
@@ -385,7 +385,7 @@ export default function BodyPage() {
              
             <div 
                 ref={testimonialsRef}
-                className={`w-full min-h-auto bg-gray-100 flex flex-col mt-[3rem]  items-center transition-opacity duration-1000 ${visibleSections.testimonials ? 'opacity-100' : 'opacity-0'}`}
+                className={`w-full min-h-auto bg-gray-100 flex flex-col mt-[3rem]   items-center transition-opacity duration-1000 ${visibleSections.testimonials ? 'opacity-100' : 'opacity-0'}`}
             >
                 <div className="h-[200px] w-[90%] flex flex-col items-center pt-14">
                     <span className="font-light text-gray-400">TESTIMONY</span>
@@ -409,7 +409,7 @@ export default function BodyPage() {
                         {testimonials.map((testimonial, index) => (
                             <div 
                                 key={testimonial.id} 
-                                className="min-w-full flex flex-col items-center px-4"
+                                className="min-w-full flex flex-col items-center px-4 "
                             >
                                 <div className="w-full max-w-2xl flex flex-col items-center">
                                     <Image 
