@@ -412,7 +412,7 @@ export default function BodyPage() {
                         {testimonials.map((testimonial, index) => (
                             <div 
                                 key={testimonial.id} 
-                                className="min-w-full flex flex-col items-center px-4 "
+                                className="min-w-full flex flex-col items-center px-4 cursor-grab "
                             >
                                 <div className="w-full max-w-2xl flex flex-col items-center">
                                     <Image 

@@ -13,6 +13,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card";
+  import { IoLogoGithub } from "react-icons/io5";
 
 import {signIn} from 'next-auth/react'
 
@@ -82,6 +83,18 @@ export default function SignInPage(){
                                      Sign In
                                   </Button>
                                </CardFooter>
+
+                               <div className="relative flex items-center justify-center w-full my-4">
+                                 <div className="flex-grow border-t border-gray-300"></div>
+                                 <span className="mx-4 text-md text-gray-500">or Continue With</span>
+                                 <div className="flex-grow border-t border-gray-300"></div>
+                              </div>
+
+                              <div className='flex items-center'>
+                                 <Button className='border w-full bg-black text-white cursor-pointer' onClick={() =>signIn('github')}>
+                                   <IoLogoGithub /> Github
+                                 </Button>
+                              </div>
                         </Form>
                     )}
 
