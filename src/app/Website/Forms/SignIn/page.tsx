@@ -14,7 +14,8 @@ import {
     CardTitle,
   } from "@/components/ui/card";
 
- 
+import {signIn} from 'next-auth/react'
+
 type UserProps  = {
     email : string , 
     password : string
@@ -33,16 +34,25 @@ const validateSignInSchema = yup.object({
 
 
 export default function SignInPage(){
+   const router = useRouter();
 
-   const handleSubmit = async () => {
-     
+   const handleSubmit = async (values : {email : string  , password : string}) => {
+        const res = await signIn('credentials' , {
+            redirect : false , 
+            email : values.email , 
+            password : values.password
+        });
+
+        if (res?.ok) router.push('/Website')
+        else throw new Error('cant sign in !')
+
    }
 
     return (
         <div className='min-h-screen bg-black flex  justify-center items-center'>
           <Card className='bg-white min-h-[400px] w-[400px]'>
             <CardHeader>
-              <CardTitle className='items-center justify-center flex text-3xl font-medium'>SignIn to Shop</CardTitle>    
+              <CardTitle className='items-center justify-center flex text-3xl  font-mono'>SignIn</CardTitle>    
             </CardHeader>
             <CardContent>
 
@@ -68,7 +78,7 @@ export default function SignInPage(){
 
                                <CardFooter className=''> 
 
-                                  <Button className='border min-w-[100%] bg-black text-white '>
+                                  <Button className='border min-w-[100%] bg-black text-white ' type='submit'>
                                      Sign In
                                   </Button>
                                </CardFooter>

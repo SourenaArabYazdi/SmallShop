@@ -25,6 +25,7 @@ export default function BodyPage() {
         product4: false,
         testimonials: false
     });
+    
 
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
     const testimonialsRef = useRef(null);
@@ -172,6 +173,8 @@ export default function BodyPage() {
             if (testimonialsRef.current) observer.unobserve(testimonialsRef.current);
         };
     }, []);
+
+   
 
     return(
         <div>

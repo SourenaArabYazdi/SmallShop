@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import  CredentialsProvider  from "next-auth/providers/credentials";
 
 
-export const authentication = NextAuth({
+export const handler = NextAuth({
     providers : [
         CredentialsProvider({
            name : 'Credentials' , 
@@ -11,7 +11,7 @@ export const authentication = NextAuth({
             password : {label : 'password' , type :  'password'}
            } , 
            async authorize(credentials) { 
-              const user = {id : '1' , name : 'Sourena Yazdi' , email : 'yazdi_sourena@yahoo.com' , password : 'Sourena@1384'};
+              const user = {id : '1' , name : 'Sourena Yazdi' , email : 'yazdi_sourena@yahoo.com' , password : 'Sourena@1384' , image : 'https://avatars.githubusercontent.com/u/168073087?v=4'};
               if (credentials?.email === user.email && credentials?.password === user.password) return user;
               return null;
            }
@@ -25,3 +25,6 @@ export const authentication = NextAuth({
      } , 
      secret : process.env.NEXTAUTH_SECRET, 
 })
+
+
+export {handler as GET , handler as POST}
