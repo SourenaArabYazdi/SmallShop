@@ -24,7 +24,7 @@ export default function DropDown() {
     
          <Sheet >
           <SheetTrigger>
-              <IoIosMenu className="cursor-pointer " />
+              <IoIosMenu className="cursor-pointer mr-[2rem] " />
           </SheetTrigger>
           
         <SheetContent className="bg-black text-white flex items-center flex-col w-[240x]  ">

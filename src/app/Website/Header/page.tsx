@@ -25,7 +25,7 @@ export default function HeaderPage(){
           <span className='font-medium text-2xl'> Shop </span>
           <div className='inline-block ml-2 '>
             {!session?.user && (
-               <Button onClick={() =>router.push('/Website/Forms/SignIn') } className='border bg-black text-white  ' >
+               <Button onClick={() =>router.push('/Website/Forms/SignIn') } className='border bg-black text-white mr-10 min-2xl:mr-[40rem] ' >
                   SignIn
                </Button>
             )}
@@ -44,7 +44,7 @@ export default function HeaderPage(){
 
                    <HoverCardContent className='bg-white text-black border-none  min-w-[300px] ' > 
                        <span>Welcome {session?.user?.name}!</span> <br />
-                       <span>email:{session?.user?.email}</span>
+                       <span>email: <span className='font-light'>{session?.user?.email} </span></span>
                        <Button onClick={() => signOut()} className='border bg-black text-white transition-all hover:bg-slate-950 cursor-pointer mt-3 w-full'>
                          Sign Out
                        </Button>
