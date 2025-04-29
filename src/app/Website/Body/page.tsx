@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import Counter from './counters';
 import Link from "next/link";
 import { FaRegCopyright } from "react-icons/fa6";
-
+import {useCart} from '@/app/Website/CartContext/Card'
 
 export default function BodyPage() {
     const [visibleSections, setVisibleSections] = useState({
@@ -25,6 +25,8 @@ export default function BodyPage() {
         product4: false,
         testimonials: false
     });
+
+    const {addToCart} = useCart();
     
 
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -33,6 +35,48 @@ export default function BodyPage() {
     const startX = useRef(0);
     const isDragging = useRef(false);
     const [touchPosition, setTouchPosition] = useState<number | null>(null);
+     
+    
+    const products = [
+        {
+          id: '1',
+          name: 'HAUTEVILLE CONCRETE ROCKING CHAIR',
+          price: 350,
+          image: '/product-1.jpg',
+        },
+        {
+          id: '2',
+          name: 'PAVILION SPEAKER',
+          price: 450,
+          image: '/product-2.jpg',
+        },
+        {
+          id: '3',
+          name: 'LIGOMANCER PENDANT LAMP',
+          price: 300,
+          image: '/product-3.jpg',
+        },
+        {
+          id: '4',
+          name: 'LIGOMANCER PENDANT LAMP',
+          price: 300,
+          image: '/product-4.jpg',
+        },
+      ];
+
+      const handleAddToCart = (productId : string) =>  {
+         const product = products.find(p => p.id === productId)
+         if(product)  {
+            addToCart({
+                id : product.id , 
+                name: product.name,
+                price: product.price,
+                image: product.image,
+            })
+         }
+      }
+
+
 
     const testimonials = [
         {
@@ -292,7 +336,12 @@ export default function BodyPage() {
                                 <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
                                     <FaEye size={18} />
                                 </a>
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Add to cart">
+                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" 
+                                onClick={(e) => {
+                                     e.preventDefault();
+                                     handleAddToCart('1')
+                                }}
+                                aria-label="Add to cart">
                                     <FaShoppingCart size={18} />
                                 </a>
                             </div>
@@ -319,7 +368,12 @@ export default function BodyPage() {
                                 <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
                                     <FaEye size={18} />
                                 </a>
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Add to cart">
+                                <a href="#"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    handleAddToCart('2')
+                               }}
+                                className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Add to cart">
                                     <FaShoppingCart size={18} />
                                 </a>
                             </div>
@@ -346,7 +400,12 @@ export default function BodyPage() {
                                 <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
                                     <FaEye size={18} />
                                 </a>
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Add to cart">
+                                <a href="#" 
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    handleAddToCart('3')
+                               }}
+                                className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Add to cart">
                                     <FaShoppingCart size={18} />
                                 </a>
                             </div>
@@ -373,7 +432,12 @@ export default function BodyPage() {
                                 <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
                                     <FaEye size={18} />
                                 </a>
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Add to cart">
+                                <a href="#"
+                                 onClick={(e) => {
+                                    e.preventDefault();
+                                    handleAddToCart('4')
+                               }}
+                                className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Add to cart">
                                     <FaShoppingCart size={18} />
                                 </a>
                             </div>

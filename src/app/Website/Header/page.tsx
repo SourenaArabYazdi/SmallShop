@@ -15,8 +15,11 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {signOut} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
+import { useCart } from '../CartContext/Card';
+import Image from 'next/image';
 
 export default function HeaderPage(){ 
+  const {cardItems} = useCart();
    const {data : session} = useSession();
    const router = useRouter();
 
@@ -79,9 +82,39 @@ export default function HeaderPage(){
               </Button>
             </div>
             
-            <Button variant="ghost" size="icon" className="h-9">
-              <CiShoppingCart className="w-10 h-10" />
-            </Button>
+            <HoverCard >
+                <HoverCardTrigger>
+                <Button variant="ghost" size="icon" className="h-9 cursor-pointer mr-4">
+                   <CiShoppingCart className="w-10 h-10  " />
+                   {cardItems.length > 0 &&(
+                     <span className='absolute top-0 right-0 bg-white text-black text-xs rounded-full w-5 h-5 flex items-center justify-center'>
+                       {cardItems.length}
+                     </span>
+                   )}
+                 </Button>
+                </HoverCardTrigger>
+
+                <HoverCardContent className='bg-white text-black border-gray-200 mr-4'>
+                    {cardItems.length === 0 ? (
+                      <p className='font-light text-black'>your cart is empty</p>
+                    ) : (
+                      <div>
+                        <h2 className='font-bold mb-2'>your Cart</h2>
+                        <ul className='space-y-2'>
+                           {cardItems.map(item => (
+                             <li key={item.id} className='flex items-center gap-3'>
+                                <Image height={50} width={50} src={item.image} className='rounded' alt={item.name} />
+                                <div>
+                                   <p className='font-medium'>{item.name}</p>
+                                   <p className='text-gray-500'>${item.price}</p>
+                                </div>
+                             </li>
+                           ))}
+                        </ul>
+                      </div>
+                    )}
+                </HoverCardContent>
+            </HoverCard>
           </div>
       </div>
     )
