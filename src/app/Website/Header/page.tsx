@@ -23,6 +23,12 @@ export default function HeaderPage(){
    const {data : session} = useSession();
    const router = useRouter();
 
+
+
+   const handleVerifyShopping = async () =>  {
+     
+   }
+
     return(
       <div className='flex justify-between items-center mb-4 mt-2 px-1'>
           <span className='font-medium text-2xl'> Shop </span>
@@ -98,7 +104,8 @@ export default function HeaderPage(){
                     {cardItems.length === 0 ? (
                       <p className='font-light text-black'>your cart is empty</p>
                     ) : (
-                      <div>
+                      <form onSubmit={handleVerifyShopping}>
+                        <div>
                         <h2 className='font-bold mb-2'>your Cart</h2>
                         <ul className='space-y-2'>
                            {cardItems.map(item => (
@@ -111,7 +118,9 @@ export default function HeaderPage(){
                              </li>
                            ))}
                         </ul>
+                        <Button className='border bg-black text-white font-light w-full mt-3 cursor-pointer hover:bg-slate-900 transition-all' type='submit'>Continue & Purshase</Button>
                       </div>
+                      </form>
                     )}
                 </HoverCardContent>
             </HoverCard>

@@ -12,7 +12,8 @@ import { Input } from "@/components/ui/input";
 import Counter from './counters';
 import Link from "next/link";
 import { FaRegCopyright } from "react-icons/fa6";
-import {useCart} from '@/app/Website/CartContext/Card'
+import {useCart} from '@/app/Website/CartContext/Card';
+import {useSession} from 'next-auth/react';
 
 export default function BodyPage() {
     const [visibleSections, setVisibleSections] = useState({
@@ -27,6 +28,26 @@ export default function BodyPage() {
     });
 
     const {addToCart} = useCart();
+    const {data : session} = useSession();
+
+    const handleAddToCart = (productsId : string) =>  {
+        if(!session?.user) { 
+            alert('please log in first!')
+            return;
+        }
+
+
+        const product = products.find(p => p.id === productsId);
+        if(product) {
+             addToCart({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+             })
+        }
+    };
+  
     
 
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -64,18 +85,7 @@ export default function BodyPage() {
         },
       ];
 
-      const handleAddToCart = (productId : string) =>  {
-         const product = products.find(p => p.id === productId)
-         if(product)  {
-            addToCart({
-                id : product.id , 
-                name: product.name,
-                price: product.price,
-                image: product.image,
-            })
-         }
-      }
-
+   
 
 
     const testimonials = [
@@ -338,8 +348,8 @@ export default function BodyPage() {
                                 </a>
                                 <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" 
                                 onClick={(e) => {
-                                     e.preventDefault();
-                                     handleAddToCart('1')
+                                    e.preventDefault();
+                                    handleAddToCart('1')
                                 }}
                                 aria-label="Add to cart">
                                     <FaShoppingCart size={18} />

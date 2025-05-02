@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaRegCopyright } from 'react-icons/fa6';
+import {useSession} from 'next-auth/react';
 // Sample product data
 const products = [
   { id: 1, name: 'HAUTEVILLE CONCRETE ROCKING CHAIR', price: 350, image: '/product-1.jpg' },
@@ -20,6 +21,39 @@ const products = [
 export default function ShopPage(){ 
     const [visibleItems, setVisibleItems] = useState<number[]>([]);
     const productRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const {data : session} = useSession();
+
+
+
+      
+    const products = [
+        {
+          id: '1',
+          name: 'HAUTEVILLE CONCRETE ROCKING CHAIR',
+          price: 350,
+          image: '/product-1.jpg',
+        },
+        {
+          id: '2',
+          name: 'PAVILION SPEAKER',
+          price: 450,
+          image: '/product-2.jpg',
+        },
+        {
+          id: '3',
+          name: 'LIGOMANCER PENDANT LAMP',
+          price: 300,
+          image: '/product-3.jpg',
+        },
+        {
+          id: '4',
+          name: 'LIGOMANCER PENDANT LAMP',
+          price: 300,
+          image: '/product-4.jpg',
+        },
+      ];
+
+   
     
     const setProductRef = (el: HTMLDivElement | null, index: number) => {
         productRefs.current[index] = el;
