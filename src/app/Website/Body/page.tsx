@@ -48,7 +48,7 @@ export default function BodyPage() {
         }
     };
   
-    
+   
 
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
     const testimonialsRef = useRef(null);
@@ -262,65 +262,54 @@ export default function BodyPage() {
             </div>
             
 
-            <div className="w-full h-screen flex flex-col 2xl:min-w-[2144px] 2xl:max-h-[646px] lg:max-h-[646px] justify-center items-center xl:flex xl:justify-center xl:flex-row xl:items-center  gap-10 bg-gray-100 md:grid md:grid-cols-3 md:grid-rows-1 lg:flex lg:flex-row lg:justify-center lg:items-center  2xl:flex 2xl:items-center 2xl:justify-center 2xl:flex-row md:justify-center md:items-center ">
-               
-                    <div 
-                        ref={creditCardRef} 
-                        className={`w-[90%] md:max-w-[249px] md:m-0 md:w-full md:h-[476px]    flex flex-col justify-center h-fit items-center mt-[6rem] transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      
-                       <span>  <CiCreditCard1 size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3"/>  </span>
-                       <span className="mt-5">CREDIT CARD</span>
-                        
-                        <p className="font-light w-[400px] mt-5 md:w-[179px] md:h-[163px]">
-                        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-                        </p>
+            <div className="w-full min-h-screen flex flex-col items-center justify-center gap-10 bg-gray-100 px-4 py-12 md:flex-row">
+  {/* CARD 1 */}
+  <div
+    ref={creditCardRef}
+    className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
+  >
+    <CiCreditCard1 size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
+    <span className="mt-5 font-semibold">CREDIT CARD</span>
+    <p className="font-light mt-5">
+      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+    </p>
+    <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
+      Learn More
+    </Button>
+  </div>
 
-                        <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
-                            Learn More
-                        </Button>
+  {/* CARD 2 */}
+  <div
+    ref={saveMoneyRef}
+    className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
+  >
+    <FaMoneyCheckDollar size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
+    <span className="mt-5 font-semibold">SAVE MONEY</span>
+    <p className="font-light mt-5">
+      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+    </p>
+    <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
+      Learn More
+    </Button>
+  </div>
 
-                    </div>
+  {/* CARD 3 */}
+  <div
+    ref={freeDeliveryRef}
+    className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
+  >
+    <FaTelegramPlane size={20} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
+    <span className="mt-5 font-semibold">FREE DELIVERY</span>
+    <p className="font-light mt-5">
+      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+    </p>
+    <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
+      Learn More
+    </Button>
+  </div>
+           </div>
 
-                    <div 
-                        ref={saveMoneyRef} 
-                        className={`w-[90%] md:max-w-[249px] md:m-0 md:h-[476px] md:w-full   flex flex-col justify-center h-fit items-center mt-1 transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      
-                       <span>  <FaMoneyCheckDollar size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3"/>  </span>
-                       <span className="mt-5">SAVE MONEY</span>
-                        
-                        <p className="font-light w-[400px] mt-5 md:w-[179px] md:h-[163px]">
-                        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-                        </p>
-
-                        <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
-                            Learn More
-                        </Button>
-
-                    </div>
-
-
-                    <div 
-                        ref={freeDeliveryRef} 
-                        className={`w-[90%] md:max-w-[249px] md:m-0 md:h-[476px]  md:w-full  flex flex-col justify-center mb-[6rem] h-auto items-center mt-6  transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      
-                       <span>  <FaTelegramPlane size={20} className="bg-amber-200 rounded-full w-[90px] h-[90px]  p-2 text-white mt-3"/>  </span>
-                       <span className="mt-5">FREE DELIVERY</span>
-                        
-                        <p className="font-light w-[400px] mt-5 md:w-[179px] md:h-[163px]">
-                        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-                        </p>
-
-                        <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
-                            Learn More
-                        </Button>
-
-                    </div>
-            </div>
-
-            <div className="w-full min-h-screen flex flex-col items-center mt-10 ">
+            <div className="w-full min-h-screen flex flex-col items-center mt-48 ">
                 <div className="h-[200px] w-[90%] flex flex-col items-center">
                     <span className="text-md text-gray-400 font-semibold">COOL STUFF</span>
                     <span className="mt-2 text-3xl">PRODUCTS</span>

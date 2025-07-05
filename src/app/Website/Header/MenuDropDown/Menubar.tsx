@@ -54,14 +54,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
              <br /> <br /><br />
 
              <MenubarTrigger>
-             <div className=' '>
+             <div >
              {session?.user && (
                  <HoverCard>
                    <HoverCardTrigger > 
                       <Button>
-                         <Avatar>
+                         <Avatar >
                              <AvatarImage src = {'https://avatars.githubusercontent.com/u/168073087?v=4'} />
-                             <AvatarFallback>{session?.user?.name}</AvatarFallback>
+                             <AvatarFallback >{session?.user?.name}</AvatarFallback>
                          </Avatar>
                       </Button>
                    </HoverCardTrigger>
