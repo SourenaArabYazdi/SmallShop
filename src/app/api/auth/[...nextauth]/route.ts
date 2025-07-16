@@ -7,6 +7,7 @@ export const handler = NextAuth({
       GithubProvider({
          clientId : process.env.GITHUB_ID as string , 
          clientSecret : process.env.GITHUB_SECRET as string
+         
       })
       
       , 
@@ -18,7 +19,7 @@ export const handler = NextAuth({
             password : {label : 'password' , type :  'password'}
            } , 
            async authorize(credentials) { 
-              const user = {id : '1' , name : 'Sourena Yazdi' , email : 'yazdi_sourena@yahoo.com' , password : 'Sourena@1384' , image : 'https://avatars.githubusercontent.com/u/168073087?v=4'};
+              const user = {id : '1' , name : 'Sourena Yazdi' , email : 'usertest@gmail.com' , password : 'user123123' , image : 'https://avatars.githubusercontent.com/u/168073087?v=4'};
               if (credentials?.email === user.email && credentials?.password === user.password) return user;
               return null;
            }

@@ -13,7 +13,7 @@ interface CounterItemProps {
   visible: boolean;
 }
 
-export default function Counter() { 
+export default function Counter() {
     const [visible, setVisible] = useState(false);
     const counterRef = useRef(null);
 
@@ -38,7 +38,7 @@ export default function Counter() {
 
     return (
         <div className="relative w-full overflow-hidden rounded-xl my-12">
-          {/* تصویر بک‌گراند */}
+        
           <Image
             width={1400}
             height={400}
@@ -47,7 +47,7 @@ export default function Counter() {
             className="w-full h-[300px] md:h-[360px] object-cover"
           />
       
-          {/* لایه روی تصویر */}
+       
           <div className="absolute inset-0 bg-white/80 flex items-center justify-center px-4">
             <div
               ref={counterRef}
@@ -114,5 +114,5 @@ export default function Counter() {
             <h2 className="text-3xl font-semibold">{count}</h2>
             <p className="text-gray-500 text-xs uppercase mt-1">{label}</p>
           </div>
-        );
-      }
+              ) 
+            }}

@@ -30,15 +30,21 @@ export default function HeaderPage(){
    }
 
     return(
-      <div className='flex justify-between items-center mb-4 mt-2 px-1'>
+      <div className='flex justify-between items-center mb-4 mt-2 px-1 w-full'>
           <span className='font-medium text-2xl'> Shop </span>
-          <div className='inline-block ml-2 '>
+          {/* Responsive Sign In Button */}
+          <div className='inline-block ml-2'>
             {!session?.user && (
-               <Button onClick={() =>router.push('/Website/Forms/SignIn') } className='border bg-black text-white mr-10 min-2xl:mr-[40rem] ' >
-                  SignIn
+               <Button 
+                 onClick={() =>router.push('/Website/Forms/SignIn') }
+                 className='border bg-black text-white mr-2 md:mr-10 px-4 py-2 text-sm md:text-base w-auto min-w-[80px] md:min-w-[120px] rounded transition-all duration-200'
+               >
+                  Sign In
                </Button>
             )}
          </div>
+         {/* Responsive Avatar for logged in user */}
+         
             <div className=' hidden md:flex md:ml-[17rem] md:mt-[7px] lg:flex lg:ml-[32rem] lg:mt-[7px] xlg:flex xlg:ml-[24rem] xlg:mt-[7px] 2xlg:flex 2xlg:ml-[34rem] 2xlg:mt-[7px] '>
              {session?.user && (
                  <HoverCard >

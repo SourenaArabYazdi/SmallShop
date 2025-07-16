@@ -37,3 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 ## about website           یک صفحه ی فروشگاهی با قابلیت احراز هویت هستش که یک کاربر بصورت پیش فرض رو میشه لاگین کرد و قابلیت اضافه کردن محصول به سبد خرید داره و در قسمت هدر قسمت شاپ هم قابل دیدن هستش و وبسایت رسپانسیو هستش
+
+## email and pass for sign in :  email : usertest@gmail.com && pass : user123123

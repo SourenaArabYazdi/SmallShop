@@ -24,6 +24,9 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { redirect } from "next/navigation";
+import Link from "next/link";
+
 
 
   export default function MenuBar(){
@@ -34,7 +37,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
         <div>
         <Menubar className="flex border-none flex-col   ">
            <MenubarMenu >
-             <MenubarTrigger className="text-[12px] text-gray-300  mt-[5rem] mr-[9rem] hover:text-white transition-all "  >Shop</MenubarTrigger>
+             <MenubarTrigger className="text-[12px] text-gray-300  mt-[5rem] mr-[9rem] hover:text-white transition-all cursor-pointer  "   > Shop </MenubarTrigger>
              <MenubarContent>
             
              </MenubarContent>
