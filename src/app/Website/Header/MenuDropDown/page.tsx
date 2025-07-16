@@ -28,6 +28,12 @@ export default function DropDown() {
           </SheetTrigger>
           
         <SheetContent className="bg-black text-white flex items-center flex-col w-[240x]  ">
+          <SheetHeader>
+            <SheetTitle className='sr-only'>Menu</SheetTitle>
+            <SheetDescription className='sr-only'>
+              A slide-out menu with navigation links and options.
+            </SheetDescription>
+          </SheetHeader>
                   <MenuBar />
 
                  
@@ -42,7 +48,8 @@ export default function DropDown() {
                    <div className="mt-4 flex items-center">
                      <Button className="flex items-center gap-2 bg-transparent hover:bg-gray-800">
                        <CiShoppingCart className="w-5 h-5 " />
-                      
+                       
+                        
                      </Button>
                    </div>
                  </div>

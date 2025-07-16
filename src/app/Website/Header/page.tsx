@@ -18,6 +18,7 @@ import {useRouter} from 'next/navigation';
 import { useCart } from '../CartContext/Card';
 import Image from 'next/image';
 
+
 export default function HeaderPage(){ 
   const {cardItems} = useCart();
    const {data : session} = useSession();
@@ -31,7 +32,11 @@ export default function HeaderPage(){
 
     return(
       <div className='flex justify-between items-center mb-4 mt-2 px-1 w-full'>
-          <span className='font-medium text-2xl'> Shop </span>
+          <span className='font-medium text-2xl cursor-pointer' >  
+             <Link href={'/Website'}>
+                Shop
+              </Link>
+             </span>
           {/* Responsive Sign In Button */}
           <div className='inline-block ml-2'>
             {!session?.user && (
@@ -44,6 +49,42 @@ export default function HeaderPage(){
             )}
          </div>
          {/* Responsive Avatar for logged in user */}
+         <HoverCard  >
+                <HoverCardTrigger>
+                <Button variant="ghost" size="icon" className="h-9 cursor-pointer ">
+                   <CiShoppingCart className="w-10 h-10   "  />
+                   {cardItems.length > 0 &&(
+                     <span className='absolute top-0 right-0 bg-white text-black text-xs rounded-full w-5 h-5 flex items-center justify-center'>
+                       {cardItems.length}
+                     </span>
+                   )}
+                 </Button>
+                </HoverCardTrigger>
+
+                <HoverCardContent className='bg-white text-black border-gray-200 mr-4'>
+                    {cardItems.length === 0 ? (
+                      <p className='font-light text-black'>your cart is empty</p>
+                    ) : (
+                      <form onSubmit={handleVerifyShopping}>
+                        <div>
+                        <h2 className='font-bold mb-2'>your Cart</h2>
+                        <ul className='space-y-2'>
+                           {cardItems.map(item => (
+                             <li key={item.id} className='flex items-center gap-3'>
+                                <Image height={50} width={50} src={item.image} className='rounded' alt={item.name} />
+                                <div>
+                                   <p className='font-medium'>{item.name}</p>
+                                   <p className='text-gray-500'>${item.price}</p>
+                                </div>
+                             </li>
+                           ))}
+                        </ul>
+                        <Button className='border bg-black text-white font-light w-full mt-3 cursor-pointer hover:bg-slate-900 transition-all' type='submit'>Continue & Purshase</Button>
+                      </div>
+                      </form>
+                    )}
+                </HoverCardContent>
+            </HoverCard>
          
             <div className=' hidden md:flex md:ml-[17rem] md:mt-[7px] lg:flex lg:ml-[32rem] lg:mt-[7px] xlg:flex xlg:ml-[24rem] xlg:mt-[7px] 2xlg:flex 2xlg:ml-[34rem] 2xlg:mt-[7px] '>
              {session?.user && (
@@ -94,43 +135,9 @@ export default function HeaderPage(){
               </Button>
             </div>
             
-            <HoverCard >
-                <HoverCardTrigger>
-                <Button variant="ghost" size="icon" className="h-9 cursor-pointer mr-4">
-                   <CiShoppingCart className="w-10 h-10  " />
-                   {cardItems.length > 0 &&(
-                     <span className='absolute top-0 right-0 bg-white text-black text-xs rounded-full w-5 h-5 flex items-center justify-center'>
-                       {cardItems.length}
-                     </span>
-                   )}
-                 </Button>
-                </HoverCardTrigger>
-
-                <HoverCardContent className='bg-white text-black border-gray-200 mr-4'>
-                    {cardItems.length === 0 ? (
-                      <p className='font-light text-black'>your cart is empty</p>
-                    ) : (
-                      <form onSubmit={handleVerifyShopping}>
-                        <div>
-                        <h2 className='font-bold mb-2'>your Cart</h2>
-                        <ul className='space-y-2'>
-                           {cardItems.map(item => (
-                             <li key={item.id} className='flex items-center gap-3'>
-                                <Image height={50} width={50} src={item.image} className='rounded' alt={item.name} />
-                                <div>
-                                   <p className='font-medium'>{item.name}</p>
-                                   <p className='text-gray-500'>${item.price}</p>
-                                </div>
-                             </li>
-                           ))}
-                        </ul>
-                        <Button className='border bg-black text-white font-light w-full mt-3 cursor-pointer hover:bg-slate-900 transition-all' type='submit'>Continue & Purshase</Button>
-                      </div>
-                      </form>
-                    )}
-                </HoverCardContent>
-            </HoverCard>
+           
           </div>
+         
       </div>
     )
 }
