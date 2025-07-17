@@ -112,7 +112,7 @@ export default function Counter() {
               {icon}
             </div>
             <h2 className="text-3xl font-semibold">{count}</h2>
-            <p className="text-gray-500 text-xs uppercase mt-1">{label}</p>
+            <p className="text-gray-500 text-xs uppercase mt-1"> {label} </p>
           </div>
               ) 
             }}
