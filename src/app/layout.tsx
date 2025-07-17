@@ -1,18 +1,41 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Metadata } from 'next';
+import localFont from 'next/font/local';
 import "./globals.css";
 import Providers from './Provider';
 import { CartProvider } from "./Website/CartContext/Card";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const geistSans = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Geist-Regular.woff2', 
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Geist-Bold.woff2', 
+      weight: '700',
+      style: 'normal',
+    },
+   
+  ],
+  variable: '--font-geist-sans', 
+  display: 'swap', 
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+
+const geistMono = localFont({
+  src: [
+    {
+      path: '../../public/fonts/GeistMono-Regular.woff2', 
+      weight: '400',
+      style: 'normal',
+    },
+  
+  ],
+  variable: '--font-geist-mono',
+  display: 'swap',
 });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
