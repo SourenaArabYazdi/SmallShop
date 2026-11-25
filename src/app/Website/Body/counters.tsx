@@ -37,15 +37,10 @@ export default function Counter() {
     }, []);
 
     return (
-        <div className="relative w-full overflow-hidden rounded-xl my-12">
+        <div className="relative w-full h-[300px] overflow-hidden rounded-xl my-12">
         
-          <Image
-            width={1400}
-            height={400}
-            alt="backimg"
-            src="/img_bg_5.jpg"
-            className="w-full h-[300px] md:h-[360px] object-cover"
-          />
+         
+        
       
        
           <div className="absolute inset-0 bg-white/80 flex items-center justify-center px-4">
