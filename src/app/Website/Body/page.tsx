@@ -6,7 +6,7 @@ import { CiCreditCard1 } from "react-icons/ci";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaCheckCircle } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import Counter from './counters';
@@ -14,6 +14,57 @@ import Link from "next/link";
 import { FaRegCopyright } from "react-icons/fa6";
 import {useCart} from '@/app/Website/CartContext/Card';
 import {useSession} from 'next-auth/react';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "@/components/ui/dialog";
+
+interface Product {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    category: string;
+    description: string;
+}
+
+const products: Product[] = [
+    {
+        id: '1',
+        name: 'HAUTEVILLE CONCRETE ROCKING CHAIR',
+        price: 350,
+        image: '/product-1.jpg',
+        category: 'Furniture',
+        description: 'A rocking chair made of concrete with a modern minimal design.',
+    },
+    {
+        id: '2',
+        name: 'PAVILION SPEAKER',
+        price: 450,
+        image: '/product-2.jpg',
+        category: 'Audio',
+        description: 'A wireless speaker with rich sound and an elegant look.',
+    },
+    {
+        id: '3',
+        name: 'LIGOMANCER PENDANT LAMP',
+        price: 300,
+        image: '/product-3.jpg',
+        category: 'Lighting',
+        description: 'A pendant lamp with warm light, perfect for living rooms.',
+    },
+    {
+        id: '4',
+        name: 'LIGOMANCER PENDANT LAMP',
+        price: 300,
+        image: '/product-4.jpg',
+        category: 'Lighting',
+        description: 'A pendant lamp with warm light, perfect for living rooms.',
+    },
+];
 
 export default function BodyPage() {
     const [visibleSections, setVisibleSections] = useState({
@@ -30,8 +81,14 @@ export default function BodyPage() {
     const {addToCart} = useCart();
     const {data : session} = useSession();
 
+    // محصولی که در دیالوگ مشخصات نمایش داده می‌شود
+    const [quickView, setQuickView] = useState<Product | null>(null);
+
+    // محصولی که تازه به سبد اضافه شده و در دیالوگ تایید نمایش داده می‌شود
+    const [addedItem, setAddedItem] = useState<Product | null>(null);
+
     const handleAddToCart = (productsId : string) =>  {
-        if(!session?.user) { 
+        if(!session?.user) {
             alert('please log in first!')
             return;
         }
@@ -45,6 +102,9 @@ export default function BodyPage() {
                 price: product.price,
                 image: product.image,
              })
+
+             // تاخیر کوتاه تا اگر دیالوگ مشخصات باز بود، اول بسته شود
+             setTimeout(() => setAddedItem(product), 150);
         }
     };
   
@@ -56,34 +116,6 @@ export default function BodyPage() {
     const startX = useRef(0);
     const isDragging = useRef(false);
     const [touchPosition, setTouchPosition] = useState<number | null>(null);
-     
-    
-    const products = [
-        {
-          id: '1',
-          name: 'HAUTEVILLE CONCRETE ROCKING CHAIR',
-          price: 350,
-          image: '/product-1.jpg',
-        },
-        {
-          id: '2',
-          name: 'PAVILION SPEAKER',
-          price: 450,
-          image: '/product-2.jpg',
-        },
-        {
-          id: '3',
-          name: 'LIGOMANCER PENDANT LAMP',
-          price: 300,
-          image: '/product-3.jpg',
-        },
-        {
-          id: '4',
-          name: 'LIGOMANCER PENDANT LAMP',
-          price: 300,
-          image: '/product-4.jpg',
-        },
-      ];
 
    
 
@@ -262,51 +294,51 @@ export default function BodyPage() {
             </div>
             
 
-            <div className="w-full min-h-screen flex flex-col items-center justify-center gap-10 bg-gray-100 px-4 py-12 md:flex-row">
-  {/* CARD 1 */}
-  <div
-    ref={creditCardRef}
-    className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
-  >
-    <CiCreditCard1 size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
-    <span className="mt-5 font-semibold">CREDIT CARD</span>
-    <p className="font-light mt-5">
-      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-    </p>
-    <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
-      Learn More
-    </Button>
-  </div>
-
-  {/* CARD 2 */}
-  <div
-    ref={saveMoneyRef}
-    className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
-  >
-    <FaMoneyCheckDollar size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
-    <span className="mt-5 font-semibold">SAVE MONEY</span>
-    <p className="font-light mt-5">
-      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-    </p>
-    <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
-      Learn More
-    </Button>
-  </div>
-
-  {/* CARD 3 */}
-  <div
-    ref={freeDeliveryRef}
-    className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
-  >
-    <FaTelegramPlane size={20} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
-    <span className="mt-5 font-semibold">FREE DELIVERY</span>
-    <p className="font-light mt-5">
-      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-    </p>
-    <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
-      Learn More
-    </Button>
-  </div>
+            <div className="w-full min-h-[800px] flex flex-col items-center justify-center gap-10 bg-gray-100 px-4 py-11 md:flex-row">
+              {/* CARD 1 */}
+              <div
+                ref={creditCardRef}
+                className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.creditCard ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <CiCreditCard1 size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
+                <span className="mt-5 font-semibold">CREDIT CARD</span>
+                <p className="font-light mt-5">
+                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+                </p>
+                <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
+                  Learn More
+                </Button>
+              </div>
+             
+              {/* CARD 2 */}
+              <div
+                ref={saveMoneyRef}
+                className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.saveMoney ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <FaMoneyCheckDollar size={55} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
+                <span className="mt-5 font-semibold">SAVE MONEY</span>
+                <p className="font-light mt-5">
+                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+                </p>
+                <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
+                  Learn More
+                </Button>
+              </div>
+             
+              {/* CARD 3 */}
+              <div
+                ref={freeDeliveryRef}
+                className={`max-w-[280px] flex flex-col items-center justify-center h-fit text-center transition-opacity duration-700 ${visibleSections.freeDelivery ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <FaTelegramPlane size={20} className="bg-amber-200 rounded-full w-[90px] h-[90px] p-2 text-white mt-3" />
+                <span className="mt-5 font-semibold">FREE DELIVERY</span>
+                <p className="font-light mt-5">
+                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+                </p>
+                <Button className="mt-5 border-amber-200 border-2 text-amber-300 rounded-none w-[120px] h-[45px] hover:border-amber-300 mb-3">
+                  Learn More
+                </Button>
+              </div>
            </div>
 
             <div className="w-full min-h-screen flex flex-col items-center mt-48 ">
@@ -332,7 +364,15 @@ export default function BodyPage() {
                                 className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
+                                <a
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setQuickView(products[0]);
+                                    }}
+                                    className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500"
+                                    aria-label="Quick view"
+                                >
                                     <FaEye size={18} />
                                 </a>
                                 <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" 
@@ -353,7 +393,7 @@ export default function BodyPage() {
                     
                     <div 
                         ref={product2Ref}
-                        className={`group relative flex flex-col items-center overflow-hidden mb-10 transition-all duration-700 ${visibleSections.product2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                        className={`group relative flex flex-col  items-center overflow-hidden mb-10 transition-all duration-700 ${visibleSections.product2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                     >
                         <div className="relative w-full h-[350px] overflow-hidden">
                             <Image 
@@ -364,7 +404,15 @@ export default function BodyPage() {
                                 className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
+                                <a
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setQuickView(products[1]);
+                                    }}
+                                    className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500"
+                                    aria-label="Quick view"
+                                >
                                     <FaEye size={18} />
                                 </a>
                                 <a href="#"
@@ -396,7 +444,15 @@ export default function BodyPage() {
                                 className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
+                                <a
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setQuickView(products[2]);
+                                    }}
+                                    className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500"
+                                    aria-label="Quick view"
+                                >
                                     <FaEye size={18} />
                                 </a>
                                 <a href="#" 
@@ -428,7 +484,15 @@ export default function BodyPage() {
                                 className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                                <a href="#" className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500" aria-label="Quick view">
+                                <a
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setQuickView(products[3]);
+                                    }}
+                                    className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-amber-500"
+                                    aria-label="Quick view"
+                                >
                                     <FaEye size={18} />
                                 </a>
                                 <a href="#"
@@ -563,6 +627,70 @@ export default function BodyPage() {
                <span>Designed by <Link href={'#'} className="text-amber-200">FreeHtlm5</Link></span>
 
            </div>
+
+           {/* Product quick view dialog */}
+           <Dialog open={!!quickView} onOpenChange={(open) => { if (!open) setQuickView(null); }}>
+               <DialogContent className="max-w-sm bg-white p-0 overflow-hidden">
+                   {quickView && (
+                       <div>
+                           <Image
+                               width={400}
+                               height={300}
+                               src={quickView.image}
+                               alt={quickView.name}
+                               className="w-full h-60 object-cover"
+                           />
+                           <div className="p-5">
+                               <DialogHeader>
+                                   <DialogTitle className="text-lg">{quickView.name}</DialogTitle>
+                                   <DialogDescription>{quickView.category}</DialogDescription>
+                               </DialogHeader>
+                               <p className="mt-3 text-sm text-gray-600 font-light">{quickView.description}</p>
+                               <p className="mt-3 text-amber-500 text-xl">${quickView.price}</p>
+                               <Button
+                                   className="mt-4 w-full bg-black text-white hover:bg-slate-900"
+                                   onClick={() => {
+                                       handleAddToCart(quickView.id);
+                                       setQuickView(null);
+                                   }}
+                               >
+                                   Add to cart
+                               </Button>
+                           </div>
+                       </div>
+                   )}
+               </DialogContent>
+           </Dialog>
+
+           {/* Added to cart confirmation dialog */}
+           <Dialog open={!!addedItem} onOpenChange={(open) => { if (!open) setAddedItem(null); }}>
+               <DialogContent className="max-w-sm bg-white text-center">
+                   {addedItem && (
+                       <div className="flex flex-col items-center">
+                           <FaCheckCircle size={48} className="text-green-500" />
+                           <DialogHeader className="mt-4 items-center">
+                               <DialogTitle className="text-lg">Added to cart!</DialogTitle>
+                               <DialogDescription>
+                                   {addedItem.name} has been added to your cart.
+                               </DialogDescription>
+                           </DialogHeader>
+                           <Image
+                               width={96}
+                               height={96}
+                               src={addedItem.image}
+                               alt={addedItem.name}
+                               className="mt-4 w-24 h-24 object-cover rounded"
+                           />
+                           <Button
+                               className="mt-5 w-full bg-black text-white hover:bg-slate-900"
+                               onClick={() => setAddedItem(null)}
+                           >
+                               Continue shopping
+                           </Button>
+                       </div>
+                   )}
+               </DialogContent>
+           </Dialog>
         </div>
     )
 }

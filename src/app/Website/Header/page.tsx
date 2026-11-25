@@ -7,7 +7,7 @@ import { CiSearch, CiShoppingCart } from "react-icons/ci";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useSession, signOut } from 'next-auth/react';
 import {
   HoverCard,
@@ -123,101 +123,46 @@ export default function HeaderPage() {
 
         {/* Shopping Cart */}
 
-        <HoverCard>
+      <Popover>
+       <PopoverTrigger asChild>
+         <Button variant="ghost" size="icon" className="relative h-9 w-9 cursor-pointer" onClick={() => console.log("hello")}>
+          <CiShoppingCart className="w-6 h-6" />
+          {cardItems.length > 0 && (
+            <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center">
+              {cardItems.length}
+            </span>
+          )}
+           </Button>
+        </PopoverTrigger>
 
-          <HoverCardTrigger asChild>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative h-9 w-9 cursor-pointer"
-            >
-
-              <CiShoppingCart className="w-6 h-6" />
-
-              {cardItems.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center">
-                  {cardItems.length}
-                </span>
-              )}
-
-            </Button>
-
-          </HoverCardTrigger>
-
-
-          <HoverCardContent
-            align="end"
-            className="bg-white text-black border-gray-200 w-72"
-          >
-
+         <PopoverContent align="end" className="z-[9999] bg-white text-black border border-gray-200 w-72 shadow-lg">
             {cardItems.length === 0 ? (
-
-              <p className="font-light text-black">
-                Your cart is empty
-              </p>
-
-            ) : (
-
-              <form onSubmit={handleVerifyShopping}>
-
-                <div>
-
-                  <h2 className="font-bold mb-3">
-                    Your Cart
-                  </h2>
-
-                  <ul className="space-y-3">
-
-                    {cardItems.map((item) => (
-
-                      <li
-                        key={item.id}
-                        className="flex items-center gap-3"
-                      >
-
-                        <Image
-                          height={50}
-                          width={50}
-                          src={item.image}
-                          className="rounded"
-                          alt={item.name}
-                        />
-
-                        <div>
-
-                          <p className="font-medium">
-                            {item.name}
-                          </p>
-
-                          <p className="text-gray-500">
-                            ${item.price}
-                          </p>
-
-                        </div>
-
-                      </li>
-
-                    ))}
-
-                  </ul>
-
-                  <Button
-                    className="border bg-black text-white font-light w-full mt-4 cursor-pointer hover:bg-slate-900 transition-all"
-                    type="submit"
-                  >
-                    Continue & Purchase
-                  </Button>
-
-                </div>
-
-              </form>
-
-            )}
-
-          </HoverCardContent>
-
-        </HoverCard>
+              <p className="font-light text-black">Your cart is empty</p>
+             ) : (
+              <div>
+               <h2 className="font-bold mb-3">Your Cart</h2>
+              <ul className="space-y-3">
+              {cardItems.map((item, index) => (
+                <li key={`${item.id}-${index}`} className="flex items-center gap-3">
+                  <Image height={50} width={50} src={item.image} className="rounded w-[50px] h-[50px] object-cover" alt={item.name} />
+                  <div>
+                    <p className="font-medium text-sm">{item.name}</p>
+                    <p className="text-gray-500">${item.price}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <Button
+              type="button"
+              onClick={handleVerifyShopping}
+              className="border bg-black text-white font-light w-full mt-4 cursor-pointer hover:bg-slate-900 transition-all"
+            >
+              Continue & Purchase
+            </Button>
+          </div>
+        )}
+       </PopoverContent>
+    </Popover>
 
 
         {/* Desktop User Avatar */}
