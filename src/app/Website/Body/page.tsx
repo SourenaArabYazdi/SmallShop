@@ -622,7 +622,7 @@ export default function BodyPage() {
 
            <div className="flex flex-col items-center mb-3 mt-8 h-fit font-lig">
                <div className="flex flex-row items-center gap-2">
-               <FaRegCopyright /> <span>2025 sourena arabyazdi & mahshid yarg AllRight Reserved</span>
+               <FaRegCopyright /> <span>2025 Sourena Arabyazdi & Mahshid Yargiv AllRight Reserved</span>
                </div>
                <span>Designed by <Link href={'#'} className="text-amber-200">FreeHtlm5</Link></span>
 

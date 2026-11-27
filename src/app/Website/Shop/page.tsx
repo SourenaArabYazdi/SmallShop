@@ -111,7 +111,7 @@ export default function ShopPage(){
                          priority
                      />
                      <div className='absolute inset-0 bg-black/10 flex flex-col justify-center text-5xl font-light text-white items-center'>
-                         <h1>PRODUCT</h1>
+                         <h1>PRODUCTS</h1>
                      </div>
                  </div>
                </div>
@@ -214,7 +214,7 @@ export default function ShopPage(){
 
            <div className="flex flex-col items-center mb-3 mt-8 h-fit font-lig">
                <div className="flex flex-row items-center gap-2">
-               <FaRegCopyright /> <span>2025 Soren AllRight Reserved</span>
+               <FaRegCopyright /> <span>2025 Sourena Arabyazdi & Mahshid Yargiv AllRight Reserved</span>
                </div>
                <span>Designed by <Link href={'#'} className="text-amber-200">FreeHtlm5</Link></span>
 
